@@ -1,6 +1,7 @@
 package com.span.league;
 
 import com.span.main.LeagueRank;
+import com.span.model.GameResult;
 
 import java.util.Hashtable;
 import java.util.StringTokenizer;
@@ -26,7 +27,7 @@ public class LeagueRankingTable {
         return statusCode;
     }
 
-    private Hashtable<String, Integer> hashTable = new Hashtable<String, Integer>();
+    private Hashtable<String, GameResult> hashTable = new Hashtable<String, GameResult>();
 
     private void buildHashMap(){
 
@@ -44,7 +45,7 @@ public class LeagueRankingTable {
                 index = teamValues[i].lastIndexOf(" ");
                 String key = teamValues[i].substring(0, index);
                 int value = Integer.valueOf(teamValues[i].substring(index + 1));
-                hashTable.put(key, value);
+
             }
 
             hashTable.forEach((s, v) -> System.out.println(s + "=" + v));
