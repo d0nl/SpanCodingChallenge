@@ -39,7 +39,6 @@ public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
                 String line = scanner.next();
                 if(!line.isEmpty()) {
                     inputLines.add(line);
-                    System.out.println("Line = " + line);
                 }
             }
             setInputLineIndex(0);
