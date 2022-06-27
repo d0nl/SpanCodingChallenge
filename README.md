@@ -2,6 +2,10 @@
 
 A command-line application that calculates the ranking table for a league.
 
+* Java 8 
+* IntelliJ IDEA 2022.1.1 (Community Edition)
+* Build #IC-221.5591.52, built on May 10, 2022
+
 #### To build the project Maven is required:
 `mvn clean compile package`
 
