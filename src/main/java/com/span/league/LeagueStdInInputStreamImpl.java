@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
@@ -29,11 +30,17 @@ public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
 
             BufferedInputStream stream = new BufferedInputStream(System.in);
             Scanner scanner = new Scanner(stream);
-            scanner.useDelimiter("\\s\\n");
+            String lineSeparator = System.lineSeparator();
+
+            //Skip control characters - Tested on Windows and Linux
+            scanner.useDelimiter("[\\t\\n\\x0B\\f\\r]");
 
             while(scanner.hasNext()) {
                 String line = scanner.next();
-                inputLines.add(line);
+                if(!line.isEmpty()) {
+                    inputLines.add(line);
+                    System.out.println("Line = " + line);
+                }
             }
             setInputLineIndex(0);
 
