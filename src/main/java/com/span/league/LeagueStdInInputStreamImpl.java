@@ -2,19 +2,10 @@ package com.span.league;
 
 import com.span.main.LeagueRank;
 import com.span.model.TeamScore;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.CharBuffer;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-
 
 public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
 
@@ -25,12 +16,10 @@ public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
 
         int statusCode = LeagueRank.STATUS_OK;
         try {
-            int retValue = LeagueRank.STATUS_OK;
             inputLines = new ArrayList<String>();
 
             BufferedInputStream stream = new BufferedInputStream(System.in);
             Scanner scanner = new Scanner(stream);
-            String lineSeparator = System.lineSeparator();
 
             //Skip control characters - Tested on Windows and Linux
             scanner.useDelimiter("[\\t\\n\\x0B\\f\\r]");
