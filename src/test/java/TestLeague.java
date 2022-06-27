@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +22,19 @@ public class TestLeague {
                 "Abis 1, Jgs 1"
         };
 
-        Path path = Paths.get("src/test/resources/sampleInput.txt");
+        //Get file separator character
+        char fileSeparator = FileSystems.getDefault().getSeparator().charAt(0);
+        //Default path for Windows
+        String pathString = "src\\test\\resources\\sampleinput.txt";
+        //Convert to Linux if should
+        String os = System.getProperty("os.name").toLowerCase();
+        if(!os.contains("windows")){
+            //Assume linux or OSX - I don't have a Mac!
+            pathString.replace('\\', fileSeparator);
+        }
+        System.out.println("OS is " + os + " pathString = " + pathString);
+        Path path = Paths.get(pathString);
+
         try(BufferedReader reader = Files.newBufferedReader(path)) {
             for (int i = 0; i < expectedValues.length; i++) {
                 String line = reader.readLine();
