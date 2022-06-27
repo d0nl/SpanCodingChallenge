@@ -47,7 +47,6 @@ public class LeagueRank {
     public static void main(String[] args) {
         int mode = 0;
         if(args.length == 0) {
-            //STDIN
             try{
                 if(System.in.available() == 0) {
                     Usage();
@@ -60,14 +59,15 @@ public class LeagueRank {
             mode = MODE_STDIN;
         } else
         if(args.length == 2) {
-            //break out of static context by creating a new instance of our class and calling non-static method ProcessLeagueStats
-            int statusCode = new LeagueRank().processLeagueStats(MODE_FILES, args);
-            System.exit(statusCode);
-
+            mode = MODE_FILES;
         } else {
             Usage();
             System.exit(STATUS_INCORRECT_PARAMS); //Return an exit status code for OS
         }
+
+        //break out of static context by creating a new instance of our class and calling non-static method ProcessLeagueStats
+        int statusCode = new LeagueRank().processLeagueStats(mode, args);
+        System.exit(statusCode);
     }
 
     public int processLeagueStats(int mode, String args[]){

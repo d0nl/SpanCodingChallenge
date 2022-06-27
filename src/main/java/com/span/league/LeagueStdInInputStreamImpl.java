@@ -6,6 +6,7 @@ import com.span.model.TeamScore;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.CharBuffer;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,17 +29,12 @@ public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
 
             BufferedInputStream stream = new BufferedInputStream(System.in);
             Scanner scanner = new Scanner(stream);
-            scanner.forEachRemaining(s -> System.out.println(s));
+            scanner.useDelimiter("\\s\\n");
 
-            /*while(scanner.hasNext()) {
-                String line = scanner.nextLine();
-                System.out.println(line);
-            }*/
-/*
-            reader.lines().forEach(
-                    line -> inputLines.add(line));
-
- */
+            while(scanner.hasNext()) {
+                String line = scanner.next();
+                inputLines.add(line);
+            }
             setInputLineIndex(0);
 
         } catch(Exception ex){
