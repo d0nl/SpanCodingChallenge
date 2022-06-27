@@ -1,27 +1,37 @@
 package com.span.model;
 
 public class TeamScore {
-    private String teamAName;
-    private int teamAScore;
+    private String teamName;
+    private int teamScore;
+    private int matchPoints;
 
-    public TeamScore(String teamAName, int teamAScore) {
-        this.teamAName = teamAName;
-        this.teamAScore = teamAScore;
+    public TeamScore(String teamName, int teamScore) {
+        this.teamName = teamName;
+        this.teamScore = teamScore;
+        this.matchPoints = 0;
     }
 
-    public String getTeamAName() {
-        return teamAName;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeamAName(String teamAName) {
-        this.teamAName = teamAName;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
-    public int getTeamAScore() {
-        return teamAScore;
+    public int getTeamScore() {
+        return teamScore;
     }
 
-    public void setTeamAScore(int teamAScore) {
-        this.teamAScore = teamAScore;
+    public void setTeamScore(int teamScore) {
+        this.teamScore = teamScore;
+    }
+
+    public int getMatchPoints() {
+        return matchPoints;
+    }
+
+    public void setMatchPoints(int matchPoints) {
+        this.matchPoints = matchPoints;
     }
 }

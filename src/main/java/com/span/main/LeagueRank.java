@@ -1,10 +1,6 @@
 package com.span.main;
 
-import com.span.league.LeagueFileInputStreamImpl;
-import com.span.league.LeagueInputStream;
-import com.span.league.LeagueRankingTable;
-import com.span.league.StdInLeagueInputStreamImpl;
-
+import com.span.league.*;
 import java.io.IOException;
 
 /**
@@ -75,9 +71,9 @@ public class LeagueRank {
     }
 
     public int processLeagueStats(int mode, String args[]){
-        LeagueInputStream stream = mode == MODE_FILES ? new LeagueFileInputStreamImpl(args[0], args[1]) : new StdInLeagueInputStreamImpl();
+        LeagueInputStream stream = mode == MODE_FILES ? new LeagueFileInputStreamImpl(args[0], args[1]) : new LeagueStdInInputStreamImpl();
         LeagueRankingTable rankingTable = new LeagueRankingTable(stream);
-        int statusCode = rankingTable.go();
+        int statusCode = rankingTable.processStream();
 
         return statusCode;
     }

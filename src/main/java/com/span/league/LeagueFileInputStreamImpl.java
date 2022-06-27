@@ -1,6 +1,7 @@
 package com.span.league;
 
 import com.span.main.LeagueRank;
+import com.span.model.TeamScore;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,18 +23,29 @@ public class LeagueFileInputStreamImpl extends LeagueFileInputStream {
     }
 
     @Override
+    public int writeOutputStream(ArrayList<TeamScore> list) {
+        list.forEach(s -> System.out.println(s.getTeamName()
+                + ", "
+                + s.getTeamScore()
+                + " "
+                + (s.getTeamScore() == 1 ? "pt" : "pts"))
+        );
+
+        return LeagueRank.STATUS_OK;
+    }
+
+    @Override
     public int initInputLines() {
         Path path = null;
         BufferedReader reader = null;
         int statusCode = LeagueRank.STATUS_OK;
         try {
             int retValue = LeagueRank.STATUS_OK;
-            System.out.println("Processing " + getInputFileName() + " " + getOutputFileName());
 
             path = Paths.get(getInputFileName());
             reader = newBufferedReader(path);
 
-            inputLines = new ArrayList();
+            inputLines = new ArrayList<String>();
             reader.lines().forEach(
                     line -> inputLines.add(line));
             setInputLineIndex(0);
