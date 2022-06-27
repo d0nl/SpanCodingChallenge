@@ -41,7 +41,7 @@ public class LeagueRank {
     private static void Usage() {
         System.out.println("\nUsage:\n");
         System.out.println("1. Supply the league input data via a piped stream, and the output will be sent to stdout.");
-        System.out.println("2. Alternatively specify league data input and output file names as parameters, and the output will be sent to the specified file.");
+        System.out.println("2. Alternatively specify league data input and output file names as parameters, and the output will be sent to the specified file.\n");
     }
 
     public static void main(String[] args) {
@@ -70,13 +70,9 @@ public class LeagueRank {
         System.exit(statusCode);
     }
 
-    public int processLeagueStats(int mode, String args[]){
+    public int processLeagueStats(int mode, String[] args){
         LeagueInputStream stream = mode == MODE_FILES ? new LeagueFileInputStreamImpl(args[0], args[1]) : new LeagueStdInInputStreamImpl();
         LeagueRankingTable rankingTable = new LeagueRankingTable(stream);
-        int statusCode = rankingTable.processStream();
-
-        return statusCode;
+        return rankingTable.processStream();
     }
-
-
 }

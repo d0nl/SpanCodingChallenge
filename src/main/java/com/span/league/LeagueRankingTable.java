@@ -3,7 +3,6 @@ package com.span.league;
 import com.span.main.LeagueRank;
 import com.span.model.GameResult;
 import com.span.model.TeamScore;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Hashtable;

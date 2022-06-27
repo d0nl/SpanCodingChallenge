@@ -1,10 +1,8 @@
 import com.span.league.LeagueFileInputStreamImpl;
 import com.span.league.LeagueInputStream;
 import com.span.league.LeagueRankingTable;
-import com.span.league.LeagueStdInInputStreamImpl;
 import com.span.main.LeagueRank;
 import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
