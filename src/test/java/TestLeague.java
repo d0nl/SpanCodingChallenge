@@ -30,7 +30,7 @@ public class TestLeague {
         String os = System.getProperty("os.name").toLowerCase();
         if(!os.contains("windows")){
             //Assume linux or OSX - I don't have a Mac!
-            pathString.replace('\\', fileSeparator);
+            pathString = pathString.replace('\\', fileSeparator);
         }
         System.out.println("OS is " + os + " pathString = " + pathString);
         Path path = Paths.get(pathString);
