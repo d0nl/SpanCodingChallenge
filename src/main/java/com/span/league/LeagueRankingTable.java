@@ -44,7 +44,7 @@ public class LeagueRankingTable {
             teamValues[0] = line.substring(0, index).trim();
             teamValues[1] = line.substring(index+1).trim();
 
-            //Process teamA
+            //Process team scores
             for(int i=0;i<2;i++) {
                 index = teamValues[i].lastIndexOf(" ");
                 String key = teamValues[i].substring(0, index);
@@ -55,7 +55,7 @@ public class LeagueRankingTable {
             GameResult gameResult = new GameResult(teamScore[0], teamScore[1]);
             gameResult.calculateScores();
 
-            //Update team scores
+            //Update team points
             for(int i=0;i<2;i++) {
                 if (teamScoreHash.containsKey(teamScore[i].getTeamName())) {
                     int points = teamScoreHash.get(teamScore[i].getTeamName());
@@ -67,21 +67,15 @@ public class LeagueRankingTable {
 
         }
 
+        //Add team scores to an ArrayList for sorting
         ArrayList<TeamScore> list = new ArrayList<TeamScore>();
         teamScoreHash.forEach((s, v) -> list.add(new TeamScore(s,v)));
+        //Comparator to sort by name for scores that are equal
         Comparator<TeamScore> byName = Comparator.comparing(TeamScore::getTeamName);
+        //Sort the list by score, then by name for scores that are the same
         list.sort(Comparator.comparing(TeamScore::getTeamScore)
                 .reversed().
                 thenComparing(byName));
-/*
-        list.forEach(s -> System.out.println(s.getTeamName()
-                + ", "
-                + s.getTeamScore()
-                + " "
-                + (s.getTeamScore() == 1 ? "pt" : "pts"))
-        );
-
- */
 
         return list;
     }

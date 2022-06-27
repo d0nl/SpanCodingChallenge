@@ -4,6 +4,7 @@ import com.span.main.LeagueRank;
 import com.span.model.TeamScore;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -24,14 +25,34 @@ public class LeagueFileInputStreamImpl extends LeagueFileInputStream {
 
     @Override
     public int writeOutputStream(ArrayList<TeamScore> list) {
-        list.forEach(s -> System.out.println(s.getTeamName()
-                + ", "
-                + s.getTeamScore()
-                + " "
-                + (s.getTeamScore() == 1 ? "pt" : "pts"))
-        );
+        int rank = 0;
+        int lastScore = -1;
+        int statusCode = LeagueRank.STATUS_OK;
 
-        return LeagueRank.STATUS_OK;
+        try(FileWriter fw = new FileWriter(getOutputFileName())) {
+            System.out.println("Processing file " + getInputFileName());
+            for(int i = 0; i < list.size(); i++) {
+                TeamScore s = list.get(i);
+                if (s.getTeamScore() != lastScore) {
+                    rank++;
+                    lastScore = s.getTeamScore();
+                }
+                String line = rank
+                        + ". "
+                        + s.getTeamName()
+                        + ", "
+                        + s.getTeamScore()
+                        + " "
+                        + (s.getTeamScore() == 1 ? "pt" : "pts");
+                fw.write(line + System.lineSeparator());
+            }
+            fw.close();
+            System.out.println((list.size()) + " rows written successfully to file " + getOutputFileName());
+        } catch(IOException ie){
+            ie.printStackTrace();
+            statusCode = LeagueRank.STATUS_IOEXCEPTION;
+        }
+        return statusCode;
     }
 
     @Override

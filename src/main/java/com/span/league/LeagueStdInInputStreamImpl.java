@@ -64,14 +64,25 @@ public class LeagueStdInInputStreamImpl extends LeagueStdInInputStream {
 
     @Override
     public int writeOutputStream(ArrayList<TeamScore> list) {
-        list.forEach(s -> System.out.println(s.getTeamName()
-                + ", "
-                + s.getTeamScore()
-                + " "
-                + (s.getTeamScore() == 1 ? "pt" : "pts"))
-        );
-
+        int rank = 0;
+        int lastScore = -1;
+        for (int i = 0; i < list.size(); i++) {
+            TeamScore s = list.get(i);
+            if(s.getTeamScore() != lastScore){
+                rank++;
+                lastScore = s.getTeamScore();
+            }
+            System.out.println(rank
+                    + ". "
+                    + s.getTeamName()
+                    + ", "
+                    + s.getTeamScore()
+                    + " "
+                    + (s.getTeamScore() == 1 ? "pt" : "pts")
+            );
+        }
         return LeagueRank.STATUS_OK;
     }
+
 
 }
