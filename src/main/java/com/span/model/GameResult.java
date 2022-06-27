@@ -26,7 +26,6 @@ public class GameResult {
 
         this.teamA.setMatchPoints(points1);
         this.teamB.setMatchPoints(points2);
-
     }
 
     public TeamScore getTeamA() {

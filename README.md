@@ -2,9 +2,21 @@
 
 A command-line application that calculates the ranking table for a league.
 
+### Notes:
+
+*The application has been developed to work on Windows as well as Linux and other*
+*Unix-like OS's like Apples OSX.*
+*Both stdin/stdout and file support has been included for extra flexibility.*
+*Application may be called from batch files with full error code support for*
+*decision-making purposes.*
+
+#### Development environment
+
 * Java 8 
 * IntelliJ IDEA 2022.1.1 (Community Edition)
-* Build #IC-221.5591.52, built on May 10, 2022
+Build #IC-221.5591.52, built on May 10, 2022
+* Windows 10 Professional
+* Tested on Windows 10, Ubuntu under Docker dev-environment
 
 #### To build the project Maven is required:
 `mvn clean compile package`
