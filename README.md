@@ -2,7 +2,7 @@
 
 A command-line application that calculates the ranking table for a league.
 
-### Notes:
+#### Notes:
 
 *The application has been developed to work on Windows as well as Linux and other*
 *Unix-like OS's like Apples OSX.*
